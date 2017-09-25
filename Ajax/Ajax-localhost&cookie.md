@@ -69,6 +69,7 @@ localStorage 方法存储的数据没有时间限制。第二天、第二周或�
 	* localStorage里有相关数据：数据转成数组赋给dataArr,拿dataArr渲染页面
 	* localStorage里没有相关数据，dataArr依然为初始值空，不渲染
 
+-
 
 		window.addEventListener('storage',function(){
             console.log('我改变了');
@@ -272,6 +273,7 @@ expires
 
 返回值：无
 
+代码
         function setCookie(key,value,n){ 
             
             //调用函数传实参的时候，可能传n，也可能不需要设置过期时间就不传n，所以要判断一下
@@ -302,6 +304,20 @@ expires
     
     * 2.循环数组，对每项用split方法 以等号=为单位 转成数组  得到[test,123],[user,2],[miaov.ketang];
 
+代码-
+
+		function getCookie(key){
+            let cookies = document.cookie;//拿到字符串
+            cookies = cookies.split('; ');//得到数组如[test=123,user=2,miaov=ketang]
+            for(var i=0; i<cookies.length; i++){
+                let arr = cookies[i].split('=');//得到如[test,123]格式的
+                if(arr[0] === key){//如果arr[0]等于传进来的key值
+                    return arr[1];//就把arr[1]（arr[0]对应的value值）返回出去
+                }
+            }   
+        }
+        console.log(getCookie('miaov'));
+
 ####2-4-3.removeCookie()
 
 * 作用：删除cookie
@@ -313,6 +329,7 @@ expires
 
 * 返回值：无
 
+代码
 
 		function removeCookie(key){
             setCookie(key,null,-1);
